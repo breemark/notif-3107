@@ -27,6 +27,14 @@
                 </header>
             @endif
 
+            @if (session()->has('flash'))
+                <div class="container">
+                    <div class="alert alert-success">
+                        {{ session('flash') }}
+                    </div>
+                </div>
+            @endif
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
