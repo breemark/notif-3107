@@ -19,12 +19,25 @@
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
+                            <div class="flex items-center  text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+                                <span class="sr-only">Info</span>
+                                <div>
+                            {!! $errors->first('recipient_id', "<span> :message </span>") !!}
+                                </div>
+                            </div>
+                        
                         </div>
 
                         <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
                         <textarea name="body" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your message here..."></textarea>
 
-                        {!! $errors->first('body', "<span> :message </span>") !!}
+
+                        <div class="flex items-center text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+                            <span class="sr-only">Info</span>
+                            <div>
+                                {!! $errors->first('body', "<span> :message </span>") !!}
+                            </div>
+                        </div>
 
                         <div class="flex pt-5 justify-center">
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">

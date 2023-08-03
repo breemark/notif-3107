@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\User;
+use App\Notifications\MessageSent;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -28,11 +29,15 @@ class MessageController extends Controller
             'recipient_id' => 'required|exists:users,id'
         ]);
 
-        Message::create([
+        $message = Message::create([
             'sender_id' => auth()->id(),
             'recipient_id' => $request->recipient_id,
             'body' => $request->body
         ]);
+
+        $recipient = User::find($request->recipient_id);
+
+        $recipient->notify(new MessageSent($message));
 
         return back()->with('flash', 'Your message has been sent');
     }
